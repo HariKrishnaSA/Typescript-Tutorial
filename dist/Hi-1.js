@@ -1,7 +1,7 @@
 let studentName = "Hari";
 let score = 95;
 let hasPassed = true;
-let colors = ["BMW", "HONDA", "SUPRAAA"];
+let car = ["BMW", "HONDA", "SUPRAAA"];
 let user = {
     name: "Hari",
     age: 20,
@@ -24,7 +24,7 @@ function divide(a, b) {
 let id = "23BAM060";
 id = "7276";
 console.log(`Student: ${studentName}, Score: ${score}, Passed: ${hasPassed}`);
-console.log(`Colors: ${colors.join(", ")}`);
+console.log(`Cars: ${car.join(", ")}`);
 console.log(`User: ${user.name} (${user.age} years old)`);
 console.log(`Sum: 5 + 10 = ${add(5, 10)}`);
 console.log(`ID: ${id}`);

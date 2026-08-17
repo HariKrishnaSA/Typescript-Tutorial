@@ -1,7 +1,7 @@
 let studentName: string = "Hari";
 let score: number = 95;
 let hasPassed: boolean = true;
-let colors: string[] = ["BMW", "HONDA", "SUPRAAA"];
+let car: string[] = ["BMW", "HONDA", "SUPRAAA"];
 let user: { name: string; age: number } = {
   name: "Hari",
   age: 20,
@@ -26,7 +26,7 @@ let id: string | number = "23BAM060";
 id = "7276"; 
 
 console.log(`Student: ${studentName}, Score: ${score}, Passed: ${hasPassed}`);
-console.log(`Colors: ${colors.join(", ")}`);
+console.log(`Cars: ${car.join(", ")}`);
 console.log(`User: ${user.name} (${user.age} years old)`);
 console.log(`Sum: 5 + 10 = ${add(5, 10)}`);
 console.log(`ID: ${id}`);
