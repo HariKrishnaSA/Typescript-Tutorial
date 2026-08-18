@@ -1,16 +1,12 @@
 import * as readline from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
 
-function removeDuplicates(nums: number[]): number {
-  if (nums.length === 0) return 0;
+function removeElement(nums: number[], val: number): number {
+  let insertIndex = 0;
 
-  let insertIndex = 1;
-
-  for (let i = 1; i < nums.length; i++) {
+  for (let i = 0; i < nums.length; i++) {
     const current = nums[i];
-    const previous = nums[i - 1];
-
-    if (current !== undefined && previous !== undefined && current !== previous) {
+    if (current !== undefined && current !== val) {
       nums[insertIndex] = current;
       insertIndex++;
     }
@@ -23,29 +19,33 @@ async function main(): Promise<void> {
   const rl = readline.createInterface({ input, output });
 
   try {
-    const rawInput = await rl.question(
-      'Enter sorted numbers (separated by spaces or commas, e.g., 0 0 1 1 1 2 2 3 3 4): '
+    const arrayInput = await rl.question(
+      'Enter numbers (separated by spaces or commas, e.g., 3 2 2 3): '
     );
 
-    // Parse and filter numeric values
-    const nums: number[] = rawInput
+    const valInput = await rl.question('Enter the value to remove (val): ');
+
+    
+    const nums: number[] = arrayInput
       .trim()
       .split(/[\s,]+/)
       .map(Number)
       .filter((n) => !isNaN(n));
 
-    if (nums.length === 0) {
-      console.log('No valid numbers entered.');
+   
+    const val = Number(valInput.trim());
+
+    if (isNaN(val)) {
+      console.log('Invalid value to remove.');
       return;
     }
 
-    nums.sort((a, b) => a - b);
+    console.log(`\nOriginal array: [${nums.join(', ')}]`);
+    console.log(`Target value to remove: ${val}`);
 
-    console.log(`\nInput array: [${nums.join(', ')}]`);
+    const k = removeElement(nums, val);
 
-    const k = removeDuplicates(nums);
-
-    console.log(`\nUnique count (k): ${k}`);
+    console.log(`\nRemaining count (k): ${k}`);
     console.log(`Modified array (first ${k} elements): [${nums.slice(0, k).join(', ')}]`);
     console.log(`Full underlying array: [${nums.join(', ')}]`);
   } finally {
