@@ -18,7 +18,7 @@ async function main() {
     const rl = readline.createInterface({ input, output });
     try {
         const rawInput = await rl.question('Enter sorted numbers (separated by spaces or commas, e.g., 0 0 1 1 1 2 2 3 3 4): ');
-        
+        // Parse and filter numeric values
         const nums = rawInput
             .trim()
             .split(/[\s,]+/)
