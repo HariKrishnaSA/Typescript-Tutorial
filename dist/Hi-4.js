@@ -16,4 +16,6 @@ function getFirstElement(arr) {
 }
 let firstElement1 = getFirstElement(["apple", "banana", "cherry"]);
 let firstElement2 = getFirstElement([1, 2, 3, 4, 5]);
+// need a oputput of type GenericIdentityFn<number>
+let myIdentity = identity;
 export {};
