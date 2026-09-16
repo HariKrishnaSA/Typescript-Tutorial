@@ -19,7 +19,7 @@ async function getUserInput(): Promise<Hari> {
     const verificationInput = await rl.question("Are you verified? (yes/no or true/false): ");
     const id = await rl.question("Enter your ID: ");
 
-    const cleanVerification = verificationInput.trim().toLowerCase();
+    const cleanVerification = verificationInput.trim().toLowerCase(); 
     const up: Hari = {
       name: name.trim(),
       age: Number(ageInput),
