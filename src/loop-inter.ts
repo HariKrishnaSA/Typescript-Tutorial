@@ -1,4 +1,5 @@
 // For used for count the numbers
+//syntax: for (initialization; condition; increment/decrement) { ... }
 console.log("--- for ---");
 const scores: number[] = [90, 85, 78];
 
@@ -7,6 +8,7 @@ for (let i: number = 0; i < scores.length; i++) {
 }
 
 // For....of used for iterating directly over array elements, strings, maps, sets.
+//syntax: for (const element of iterable) { ... }
 console.log("\n--- for...of ---"); 
 const Tools: string[] = ['git', 'VS code', 'claude'];
 
@@ -15,6 +17,7 @@ for (const n of Tools) {
 }
 
 // For....in used for Iterating Keys/Properties
+//syntax: for (const key in object) { ... }
 console.log("\n--- for...in ---");
 interface User {
   name: string;
@@ -29,6 +32,7 @@ for (const key in config) {
 
 
 //ForEach used for automatic type inference for the current element and index.
+//syntax: array.forEach((element, index) => { ... });
 console.log("\n--- forEach ---");
 const fruits: string[] = ['apple', 'banana', 'mango'];
 
@@ -37,6 +41,7 @@ fruits.forEach((element, index) => {
 });
 
 //While used for runs code repeatedly as long as a specified condition evaluates to true.
+//syntax: while (condition) { ... }
 console.log("\n--- while ---");
 let c: number = 0;
 
@@ -46,6 +51,7 @@ while (c < 3) {
 }
 
 //do...while run at least once before evaluating the condition.
+//syntax: do { ... } while (condition);
 console.log("\n--- do...while ---");
 
 let count: number = 0;

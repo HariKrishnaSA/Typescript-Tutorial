@@ -1,5 +1,8 @@
 //Promise.allSettled
 //Waits for all checks to complete without crashing
+
+//syntax: Promise.allSettled([promise1, promise2, ...]).then((results) => { ... }).catch((error) => { ... });
+
 function fullCheck(): Promise<string> {
   return new Promise((resolve) => {
     setTimeout(() => resolve("Engine: OK (Temp 90°C)"), 300);

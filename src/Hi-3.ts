@@ -1,3 +1,4 @@
+// Define an interface for user profiles
 interface UserProfile {
   readonly id: number;                             
   name: string;

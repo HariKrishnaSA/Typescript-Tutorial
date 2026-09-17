@@ -1,6 +1,8 @@
 //Static Polymorphism (Compile-time / Method Overloading)
 //Multiple type signatures are defined for the same function name
 
+//syntax: function add(a: number, b: number): number; function add(a: string, b: string): string; function add(a: any, b: any): any { ... }
+
 console.log("\n--- Static Polymorphism ---");
 class Cal {
 

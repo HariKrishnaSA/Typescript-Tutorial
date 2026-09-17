@@ -18,6 +18,7 @@ const headphones: Product = {
   price: 5000,
   isAvailable: false,
 };
+//function to get product details
 function getProductDetails(item: Product): string {
   if (!item.isAvailable) {
     return `❌ ${item.name} is currently out of stock.`;

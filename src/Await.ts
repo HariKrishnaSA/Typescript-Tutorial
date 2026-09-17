@@ -1,4 +1,5 @@
 // 1. Define the data interface
+//syntax: interface UserData { id: number; name: string; email: string; }
 interface UserData {
   id: number;
   name: string;
@@ -6,6 +7,7 @@ interface UserData {
 }
 
 // 2. Simulated asynchronous fetch function returning a typed Promise
+//syntax: function fetchUserFromDatabase(userId: number): Promise<UserData> { ... }
 function fetchUserFromDatabase(userId: number): Promise<UserData> {
   return new Promise<UserData>((resolve, reject) => {
     setTimeout(() => {
@@ -23,6 +25,7 @@ function fetchUserFromDatabase(userId: number): Promise<UserData> {
 }
 
 // 3. Consuming the Promise using async / await
+//syntax: async function getUserProfile(id: number): Promise<void> { ... }
 async function getUserProfile(id: number): Promise<void> {
   console.log(`Starting fetch for User ID: ${id}...`);
 
@@ -46,6 +49,7 @@ async function getUserProfile(id: number): Promise<void> {
 }
 
 // 4. Invoking the async function
+//syntax: async function main() { ... }
 async function main() {
   await getUserProfile(101); // Successful call
   await getUserProfile(-5);  // Triggers error catch

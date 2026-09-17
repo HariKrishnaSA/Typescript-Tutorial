@@ -2,6 +2,9 @@
 //Runs all promises in parallel.
 //Resolves when all succeed.
 //Fails fast: Rejects immediately if any single promise fails.
+
+//syntax: Promise.all([promise1, promise2, ...]).then((results) => { ... }).catch((error) => { ... });
+
 console.log("\n--- Promise.all ---");
 function checkEngine(): Promise<string> {
   return new Promise((resolve) => {

@@ -1,4 +1,5 @@
 // 1. Array (ordered list)
+//syntax: type[]
 console.log("--- Array ---");
 const tools: string[] = ["Git", "VS Code"];
 tools.push("TypeScript");
@@ -7,12 +8,14 @@ console.log("Array:", tools);
 console.log("\n--- Tuple ---");
 
 // 2. Tuple (fixed types & positions)
+//syntax: [type1, type2, ...]
 const user: [number, string] = [1, "Hari"];
 console.log(`ID: ${user[0]}, Name: ${user[1]}`);
 
 console.log("\n--- Set ---");
 
 // 3. Set (unique values only)
+//syntax: new Set<type>()
 const ids = new Set<number>([10, 20, 20, 30]);
 ids.add(40);
 console.log("Set size:", ids.size); // 4
@@ -20,6 +23,7 @@ console.log("Set size:", ids.size); // 4
 console.log("\n--- Map ---");
 
 // 4. Map (key-value pairs)
+//syntax: new Map<keyType, valueType>()
 const roles = new Map<string, string>();
 roles.set("Hari", "Admin");
 roles.set("Alex", "Tester");
