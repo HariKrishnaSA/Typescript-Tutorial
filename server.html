@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Profile Manager</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      /* Target ONLY the main form, not inline action forms */
+      #profile-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 30px;
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+      }
+
+      input[type="text"],
+      input[type="number"] {
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .btn-container {
+        display: flex;
+        gap: 10px;
+      }
+
+      button {
+        padding: 8px 16px;
+        font-size: 14px;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      .btn-save {
+        background: #0070f3;
+        color: white;
+      }
+      .btn-clear {
+        background: #666;
+        color: white;
+      }
+
+      /* Compact styling specifically for table action buttons */
+      .action-cell {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .action-form {
+        display: inline;
+        margin: 0;
+        padding: 0;
+        border: none;
+        background: none;
+      }
+
+      .btn-edit,
+      .btn-del {
+        padding: 4px 10px;
+        font-size: 12px;
+        border-radius: 4px;
+      }
+
+      .btn-edit {
+        background: #008060;
+        color: white;
+      }
+      .btn-del {
+        background: #e00;
+        color: white;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+        vertical-align: middle;
+      }
+
+      th {
+        background: #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Create or Edit Profile</h2>
+    <form id="profile-form" action="/submit" method="POST">
+      <!-- Hidden input tracks the original ID when editing -->
+      <input type="hidden" id="field-original-id" name="originalId" value="" />
+
+      <input
+        type="text"
+        id="field-id"
+        name="id"
+        placeholder="ID"
+        required
+        autocomplete="off"
+      />
+      <input
+        type="text"
+        id="field-name"
+        name="name"
+        placeholder="Name"
+        required
+        autocomplete="off"
+      />
+      <input
+        type="number"
+        id="field-age"
+        name="age"
+        placeholder="Age"
+        required
+        autocomplete="off"
+      />
+      <input
+        type="text"
+        id="field-role"
+        name="role"
+        placeholder="Role"
+        required
+        autocomplete="off"
+      />
+
+      <label>
+        <input
+          type="checkbox"
+          id="field-verification"
+          name="verification"
+          value="true"
+        />
+        Verified?
+      </label>
+
+      <div class="btn-container">
+        <button type="submit" class="btn-save">Save Profile</button>
+        <button type="button" class="btn-clear" onclick="resetForm()">
+          Clear Form
+        </button>
+      </div>
+    </form>
+
+    <h2>Database Records</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Role</th>
+          <th>Verified</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+
+    <script>
+      let profilesData = [];
+
+      async function loadProfiles() {
+        const res = await fetch("/api/profiles");
+        profilesData = await res.json();
+        const tbody = document.getElementById("table-body");
+
+        if (profilesData.length === 0) {
+          tbody.innerHTML =
+            '<tr><td colspan="6" style="text-align:center;">No profiles found</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = profilesData
+          .map(
+            (p) => `
+          <tr>
+            <td>${p.id}</td>
+            <td>${p.name}</td>
+            <td>${p.age}</td>
+            <td>${p.role}</td>
+            <td>${p.verification ? "Yes" : "No"}</td>
+            <td>
+              <button type="button" class="btn-edit" onclick="populateEdit('${p.id}')">Edit</button>
+              <form action="/delete" method="POST" style="display:inline;">
+                <input type="hidden" name="id" value="${p.id}" />
+                <button type="submit" class="btn-del">Delete</button>
+              </form>
+            </td>
+          </tr>
+        `,
+          )
+          .join("");
+      }
+
+      function populateEdit(id) {
+        const item = profilesData.find((p) => String(p.id) === String(id));
+        if (!item) return;
+
+        // Save original ID in the hidden input
+        document.getElementById("field-original-id").value = item.id;
+
+        // Fill all fields for editing, including the ID input
+        document.getElementById("field-id").value = item.id;
+        document.getElementById("field-name").value = item.name;
+        document.getElementById("field-age").value = item.age;
+        document.getElementById("field-role").value = item.role;
+        document.getElementById("field-verification").checked = Boolean(
+          item.verification,
+        );
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        document.getElementById("field-id").focus();
+      }
+
+      function resetForm() {
+        document.getElementById("profile-form").reset();
+        document.getElementById("field-original-id").value = "";
+        document.getElementById("field-id").value = "";
+        document.getElementById("field-name").value = "";
+        document.getElementById("field-age").value = "";
+        document.getElementById("field-role").value = "";
+        document.getElementById("field-verification").checked = false;
+        document.getElementById("field-id").focus();
+      }
+
+      loadProfiles();
+    </script>
+  </body>
+</html>
