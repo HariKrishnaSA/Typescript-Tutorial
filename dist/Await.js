@@ -1,4 +1,5 @@
 // 2. Simulated asynchronous fetch function returning a typed Promise
+//syntax: function fetchUserFromDatabase(userId: number): Promise<UserData> { ... }
 function fetchUserFromDatabase(userId) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -16,6 +17,7 @@ function fetchUserFromDatabase(userId) {
     });
 }
 // 3. Consuming the Promise using async / await
+//syntax: async function getUserProfile(id: number): Promise<void> { ... }
 async function getUserProfile(id) {
     console.log(`Starting fetch for User ID: ${id}...`);
     try {
@@ -39,6 +41,7 @@ async function getUserProfile(id) {
     }
 }
 // 4. Invoking the async function
+//syntax: async function main() { ... }
 async function main() {
     await getUserProfile(101); // Successful call
     await getUserProfile(-5); // Triggers error catch

@@ -1,3 +1,4 @@
+// Add two numbers using TypeScript
 import * as readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
 async function addTwoNumbers() {

@@ -1,4 +1,5 @@
 //Abstraction hides internal implementation details and shows only the essential features to the outside world.
+//syntax: abstract class Shape { abstract area(): void; }
 class sq {
 }
 class Square extends sq {

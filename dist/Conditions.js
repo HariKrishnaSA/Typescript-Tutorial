@@ -1,5 +1,6 @@
 console.log("--- Conditional Statements ---");
 // if,else if, else used for executing code based on conditions.
+//syntax: if (condition) { ... } else if (condition) { ... } else { ... }
 const score = 45;
 if (score >= 90) {
     console.log("Grade: A");
@@ -12,6 +13,7 @@ else {
 }
 console.log("\n--- Nested if ---");
 // Nested if statements allow for more complex decision-making by placing one if statement inside another.
+//syntax: if (condition) { if (condition) { ... } else { ... } } else { ... }
 const isUser = false;
 const isAdmin = true;
 if (isUser) {

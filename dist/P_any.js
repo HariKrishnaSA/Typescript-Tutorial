@@ -1,5 +1,6 @@
 //Promise.any
 //The car tries to connect to 4G Cellular, Satellite, and Offline Cache.
+//syntax: Promise.any([promise1, promise2, ...]).then((result) => { ... }).catch((error) => { ... });
 function satelliteGPS() {
     return new Promise((_, reject) => {
         setTimeout(() => reject("Satellite link blocked (tunnel)"), 80);

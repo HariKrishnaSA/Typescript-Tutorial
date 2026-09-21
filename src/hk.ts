@@ -7,3 +7,6 @@ const message: string = "I love India";
 const noSpaces: string = message.replace(/\s+/g, "");
 console.log(noSpaces);
 
+
+
+ 

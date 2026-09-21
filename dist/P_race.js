@@ -1,5 +1,6 @@
 //Promise.race
 //Emergency braking triggers as soon as the very first obstacle sensor detects something
+//syntax: Promise.race([promise1, promise
 function frontRadar() {
     return new Promise((resolve) => {
         setTimeout(() => resolve("Front Radar detected vehicle at 15m!"), 120);

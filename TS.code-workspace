@@ -1,0 +1,62 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "terminal.integrated.enablePersistentSessions": true,
+    "terminal.integrated.persistentSessionReviveProcess": "onExitAndWindowClose",
+    "terminal.integrated.profiles.windows": {
+      "RUN": {
+        "source": "PowerShell",
+        "overrideName": true,
+        "cwd": "${workspaceFolder}/src",
+        "icon": "play"
+      },
+      "GIT": {
+        "source": "PowerShell",
+        "overrideName": true,
+        "cwd": "${workspaceFolder}",
+        "icon": "git-branch"
+      }
+    }
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Open RUN Terminal",
+        "type": "shell",
+        "command": "powershell",
+        "options": {
+          "cwd": "${workspaceFolder}/src"
+        },
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated",
+          "group": "setup"
+        },
+        "runOptions": {
+          "runOn": "folderOpen"
+        }
+      },
+      {
+        "label": "Open GIT Terminal",
+        "type": "shell",
+        "command": "powershell",
+        "options": {
+          "cwd": "${workspaceFolder}"
+        },
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated",
+          "group": "setup"
+        },
+        "runOptions": {
+          "runOn": "folderOpen"
+        }
+      }
+    ]
+  }
+}
